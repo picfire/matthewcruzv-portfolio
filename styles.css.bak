@@ -196,7 +196,7 @@ h3,
   width: min(1100px, calc(100% - 2rem));
   margin: 1rem auto 3rem;
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr);
+  grid-template-columns: 72px minmax(0, 1fr);
   gap: 1rem;
   align-items: start;
 }
@@ -205,25 +205,17 @@ h3,
   grid-column: 1;
   grid-row: 1;
   position: sticky;
-  top: 10vh;
-  width: 80px;
-  height: 80vh;
+  top: 32vh;
   align-self: start;
-  /* container is mostly invisible — SVG arc is the visual anchor */
-  background: transparent;
-  border: none;
-  overflow: visible;
-}
-
-/* SVG arc fills the dock bounds and provides the orbital ring visual */
-.dock-arc-track {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0.9rem 0.6rem;
+  height: fit-content;
+  background: rgba(195, 212, 232, 0.32);
+  border: 1px solid rgba(120, 148, 180, 0.44);
+  border-radius: 6px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 4px 12px rgba(28,48,80,0.14);
 }
 
 .dock-toggle,
@@ -244,26 +236,12 @@ h3,
   min-height: 60vh;
 }
 
-/*
- * Icon positions on the orbital arc.
- * Ellipse: cx=5, cy=50, rx=55, ry=50 in viewBox "0 0 80 100"
- * θ=30°: (32.5, 6.7)   θ=70°: (56.7, 32.9)
- * θ=110°: (56.7, 67.1)  θ=150°: (32.5, 93.3)
- * translate(-50%,-50%) centres the button on those coordinates.
- */
-.dock-item:nth-child(1) { left: 40.6%; top:  6.7%; }
-.dock-item:nth-child(2) { left: 70.9%; top: 32.9%; }
-.dock-item:nth-child(3) { left: 70.9%; top: 67.1%; }
-.dock-item:nth-child(4) { left: 40.6%; top: 93.3%; }
-
 .dock-item {
-  position: absolute;
-  z-index: 1;
   width: 54px;
   height: 54px;
   border-radius: 50%;
   border: 1.5px solid rgba(180, 198, 218, 0.75);
-  /* 3D convex sphere: specular highlight + deep shading */
+  /* 3D convex sphere: specular highlight layer + deep shading */
   background:
     radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0) 36%),
     radial-gradient(circle at 38% 34%, #dde8f4 0%, #b5c6da 40%, #8596ae 76%, #697c96 100%);
@@ -271,6 +249,7 @@ h3,
   color: #1c2d3f;
   cursor: pointer;
   text-shadow: 0 1px 3px rgba(255, 255, 255, 0.65);
+  /* inset shading + three concentric bezel rings + drop shadow */
   box-shadow:
     inset 0 2px 5px rgba(255, 255, 255, 0.72),
     inset 0 -3px 7px rgba(28, 48, 80, 0.38),
@@ -278,10 +257,10 @@ h3,
     0 0 0 8px rgba(136, 160, 195, 0.26),
     0 0 0 14px rgba(118, 146, 184, 0.13),
     0 5px 14px rgba(28, 48, 80, 0.4);
-  /* translate(-50%,-50%) centres the button on its arc coordinate */
-  transform: translate(-50%, -50%) scale(0.78);
-  opacity: 0.78;
+  transform: scale(0.7);
+  opacity: 0.74;
   transition: transform 280ms ease, box-shadow 280ms ease, opacity 280ms ease;
+  position: relative;
   isolation: isolate;
 }
 
@@ -309,47 +288,22 @@ h3,
   animation: dock-orbit 11s linear infinite;
 }
 
-.dock-item:hover {
-  transform: translate(-50%, -50%) scale(0.92);
-  opacity: 1;
-}
-
+.dock-item:hover,
 .dock-item.active {
-  transform: translate(-50%, -50%) scale(1.0);
+  transform: translateY(-2px) scale(1.1);
   opacity: 1;
-  font-size: 1.06rem;
   box-shadow:
     inset 0 2px 5px rgba(255, 255, 255, 0.85),
     inset 0 -3px 8px rgba(28, 48, 80, 0.42),
-    0 0 0 3px rgba(179, 26, 69, 0.72),
-    0 0 0 9px rgba(148, 172, 212, 0.3),
-    0 0 0 16px rgba(130, 158, 200, 0.14),
-    0 0 0 24px rgba(179, 26, 69, 0.06),
-    0 8px 22px rgba(28, 48, 80, 0.55);
+    0 0 0 3px rgba(179, 26, 69, 0.68),
+    0 0 0 8px rgba(148, 172, 212, 0.32),
+    0 0 0 14px rgba(130, 158, 200, 0.16),
+    0 0 0 21px rgba(179, 26, 69, 0.07),
+    0 8px 20px rgba(28, 48, 80, 0.5);
 }
 
-/* Active state: replace the spinning arc ring with a rotating gear ring */
-.dock-item.active::before {
-  inset: -18px;
-  border: none;
-  border-radius: 0;
-  background: rgba(179, 26, 69, 0.17);
-  z-index: -1;
-  /* 6-tooth gear clip-path — inner radius ~30% aligns with button edge */
-  clip-path: polygon(
-    35% 24%,  37% 2%,  63% 2%,  65% 24%,
-    85% 15%,  98% 37%, 80% 50%,
-    98% 63%,  85% 85%, 65% 76%,
-    63% 98%,  37% 98%, 35% 76%,
-    15% 85%,  2%  63%, 20% 50%,
-    2%  37%,  15% 15%
-  );
-  animation: dock-gear-spin 5s linear infinite;
-}
-
-@keyframes dock-gear-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+.dock-item.active {
+  font-size: 1.06rem;
 }
 
 @keyframes dock-spin {
@@ -786,57 +740,20 @@ h3,
     position: fixed;
     left: 50%;
     bottom: 1.1rem;
-    top: auto;
-    width: min(260px, calc(100vw - 1.2rem));
-    height: auto;
     z-index: 22;
+    width: min(260px, calc(100vw - 1.2rem));
     padding: 0.55rem 0.5rem;
     border-radius: 20px;
     border: 1px solid rgba(131, 149, 171, 0.44);
     background: rgba(233, 240, 247, 0.45);
     backdrop-filter: blur(9px);
-    display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
     gap: 0.35rem;
-    overflow: hidden;
     transform: translate(-50%, 140%);
     opacity: 0;
     pointer-events: none;
     transition: transform 240ms ease, opacity 240ms ease;
-  }
-
-  .dock-arc-track { display: none; }
-
-  /* Reset desktop arc positioning for mobile flex row */
-  .dock-item,
-  .dock-item:nth-child(1),
-  .dock-item:nth-child(2),
-  .dock-item:nth-child(3),
-  .dock-item:nth-child(4) {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: scale(0.72);
-    opacity: 0.84;
-  }
-
-  .dock-item:hover,
-  .dock-item.active {
-    transform: scale(0.98);
-    opacity: 1;
-  }
-
-  .dock-item.active::before {
-    clip-path: none;
-    border-radius: 50%;
-    background: transparent;
-    border: 1.5px solid rgba(148, 170, 200, 0.82);
-    border-left-color: rgba(148, 170, 200, 0.08);
-    border-bottom-color: rgba(148, 170, 200, 0.22);
-    inset: -10px;
-    animation: dock-spin 6.8s linear infinite;
   }
 
   body.dock-open .dock {
