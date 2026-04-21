@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Cruz | Portfolio</title>
+  <meta name="description" content="Matthew Cruz portfolio: software, electronics, and systems projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="bg-wash"></div>
+    <div class="bg-sweep bg-sweep-left"></div>
+    <div class="bg-sweep bg-sweep-right"></div>
+    <div class="bg-redline"></div>
+    <div class="bg-center-symbol">
+      <div class="sym-ring sym-ring-1"></div>
+      <div class="sym-ring sym-ring-2"></div>
+      <div class="sym-ring sym-ring-3"></div>
+      <div class="sym-bar sym-bar-1"></div>
+      <div class="sym-bar sym-bar-2"></div>
+      <div class="sym-core"></div>
+    </div>
+    <div class="bg-mark">ALTIMIT MINE OS</div>
+  </div>
+
+  <button class="dock-toggle glass" type="button" aria-label="Open section dock" aria-controls="section-dock" aria-expanded="false">◉</button>
+  <div class="dock-backdrop" aria-hidden="true"></div>
+
+  <main class="layout">
+    <aside id="section-dock" class="dock" aria-label="Quick launch">
+      <button class="dock-item active" data-target="hero" aria-label="Home">◎</button>
+      <button class="dock-item" data-target="projects" aria-label="Projects">▦</button>
+      <button class="dock-item" data-target="experience" aria-label="Experience">⌬</button>
+      <button class="dock-item" data-target="links" aria-label="Links">⟢</button>
+    </aside>
+
+    <div class="content-column">
+      <section id="hero" class="panel hero glass reveal">
+        <p class="eyebrow">SYSTEM ONLINE • Tempe, AZ</p>
+        <pre class="ascii-name" aria-label="Matthew Cruz">`7MMM.     ,MMF'            mm     mm     `7MM                      
+  MMMb    dPMM              MM     MM       MM                      
+  M YM   ,M MM   ,6"Yb.   mmMMmm mmMMmm     MMpMMMb.  .gP"Ya  `7MM  `7MM  `7MM
+  M  Mb  M' MM  8)   MM     MM     MM       MM    MM ,M'   Yb   MM    MM    MM
+  M  YM.P'  MM   ,pm9MM     MM     MM       MM    MM 8M""""""   MM    MM    MM
+  M  `YM'   MM  8M   MM     MM     MM       MM    MM YM.    ,   MM    MM    MM
+.JML. `'  .JMML.`Moo9^Yo.   `Mbmo  `Mbmo  .JMML  JMML.`Mbmmd'   `MbwwwP'bwwP' 
+
+
+        .g8"""bgd                                     
+      .dP'     `M                                     
+      dM'       ` `7Mb,od8 `7MM  `7MM  M""MMV         
+      MM            MM' "'   MM    MM  '  AMV         
+      MM.    `7MMF' MM       MM    MM    AMV          
+      `Mb.     MM   MM       MM    MM   AMV  ,        
+        `"bmmmdPY .JMML.     `Mbod"YML.AMVMMM</pre>
+        <p class="lead">I build software, electronics, and high-powered lawn darts.</p>
+        <div class="status-strip" aria-label="System status">
+          <span>NODE: ACTIVE</span>
+          <span>DISCIPLINE: SOFTWARE + EMBEDDED</span>
+          <span>MODE: BUILDING</span>
+        </div>
+      </section>
+
+      <section id="projects" class="panel glass reveal">
+        <div class="panel-header">
+          <h2>Projects</h2>
+          <span class="panel-line"></span>
+        </div>
+        <p class="muted">Selected builds from software, systems, and hardware experiments.</p>
+        <div class="card-grid">
+          <article class="project-card">
+            <h3>NetCheck</h3>
+            <p class="tag-row"><span>software</span><span>monitoring</span></p>
+            <p>A persistent network uptime and speed logging exporter designed for Raspberry Pi deployments.</p>
+          </article>
+          <article class="project-card">
+            <h3>Musical Flamethrower</h3>
+            <p class="tag-row"><span>hardware</span><span>control systems</span></p>
+            <p>A propane candelabra synced to rhythm inputs from guitar and Beat Saber maps.</p>
+          </article>
+          <article class="project-card">
+            <h3>Ground Control Software</h3>
+            <p class="tag-row"><span>embedded</span><span>telemetry</span></p>
+            <p>Flight computer interfaces, telemetry links, and deployment tooling for competition rockets.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="panel glass reveal">
+        <div class="panel-header">
+          <h2>Experience</h2>
+          <span class="panel-line"></span>
+        </div>
+        <ol class="timeline">
+          <li>
+            <div class="dot"></div>
+            <div>
+              <h3>Queen's College, The University of Melbourne</h3>
+              <p class="meta">Tutor • 2026 – Present</p>
+              <p>Tutoring foundations of computing and digital fundamentals.</p>
+            </div>
+          </li>
+          <li>
+            <div class="dot"></div>
+            <div>
+              <h3>RMIT High Velocity Rocketry</h3>
+              <p class="meta">IBEC Team Lead / Software Engineer • 2025 – Present</p>
+              <p>Leading cross-disciplinary systems integration and building embedded flight software.</p>
+            </div>
+          </li>
+          <li>
+            <div class="dot"></div>
+            <div>
+              <h3>Google</h3>
+              <p class="meta">Associate Software Developer Intern • 2025 – 2026</p>
+              <p>Worked on Google Maps Core UGC and on-device LLM / Android features.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="links" class="panel glass reveal">
+        <div class="panel-header">
+          <h2>Links</h2>
+          <span class="panel-line"></span>
+        </div>
+        <ul class="link-list">
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          <li><a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></li>
+          <li><a href="https://stackoverflow.com" target="_blank" rel="noreferrer">Stack Overflow</a></li>
+        </ul>
+        <footer class="site-footer">
+          <a href="#hero">Home</a>
+          <p>© 2026 Matthew Cruz</p>
+        </footer>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
