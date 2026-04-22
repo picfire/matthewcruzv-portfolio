@@ -17,6 +17,11 @@
 
 * {
   box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 html,
@@ -30,6 +35,11 @@ body {
   color: var(--text);
   background: linear-gradient(165deg, var(--bg-soft), var(--bg));
   overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 h1,
