@@ -105,3 +105,16 @@ window.addEventListener('scroll', requestActiveSectionUpdate, { passive: true })
 window.addEventListener('resize', requestActiveSectionUpdate);
 
 pickActiveSection();
+
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name    = document.getElementById('contact-name').value.trim();
+    const email   = document.getElementById('contact-email').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    const body    = encodeURIComponent(`From: ${name} <${email}>\n\n${message}`);
+    window.location.href = `mailto:mcruz85@asu.edu?subject=${subject}&body=${body}`;
+  });
+}
